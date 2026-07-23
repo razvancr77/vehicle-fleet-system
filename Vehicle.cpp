@@ -27,7 +27,7 @@ double Vehicle::get_nivelCombusibilCurent() const {return this->nivelCombustibil
 
 //metode
 bool Vehicle::asigneazaSofer(Driver *angajat) {
-    if (angajat == nullptr) return false;
+    if (angajat == nullptr || this->sofer != nullptr) return false;
 
     bool conform = permisValid(*angajat);
     if (conform) {
@@ -37,6 +37,11 @@ bool Vehicle::asigneazaSofer(Driver *angajat) {
     std::cout << "Acest angajat nu are categoria de permis necesara conducerii acestui vehicul." << std::endl;
     return false;
 }
+
+void Vehicle::elibereazaSofer() {
+    this->sofer = nullptr;
+}
+
 
 void Vehicle::alimenteaza(double litrii) {
     if (litrii < 0 || litrii + nivelCombustibilCurent > this->capacitateRezervor) {

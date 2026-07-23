@@ -21,7 +21,11 @@ protected:
     double nivelCombustibilCurent;
 
 public:
-    Vehicle( const std::string& combustibil, const std::string& sasiu, const std::string& marca, const std::string& model, double cap);
+    Vehicle( const std::string& combustibil,
+             const std::string& sasiu,
+             const std::string& marca,
+             const std::string& model,
+             double cap);
     virtual ~Vehicle();
     //getterii
     std::string get_serieSasiu() const;
@@ -37,6 +41,7 @@ public:
 
     //metode mostenite direct
     bool asigneazaSofer(Driver *angajat);
+    void elibereazaSofer();
     void alimenteaza(double litrii);
     void consuma(double litrii);
 };
