@@ -8,7 +8,7 @@
 
 int main() {
     std::vector<std::string> p = {"B"};
-    std::unique_ptr<Driver> sofer1 = std::make_unique<Driver>("Singiorzan Razvan", "0000000000001", p);
+    std::unique_ptr<Driver> sofer1 = std::make_unique<Driver>("Singiorzan Sorin", "0000000000001", p);
 
     std::unique_ptr<Car> masina1 = std::make_unique<Car>(
         "Benzina",
