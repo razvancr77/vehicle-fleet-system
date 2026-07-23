@@ -28,5 +28,12 @@ int main() {
     std::cout << "Masina a fost alocata cu succes soferului pe Heap folosind Modern C++!" << std::endl;
 
     std::cout << masina1->get_sofer()->get_nume() << std::endl;
+
+
+    masina1->alimenteaza(20);
+    masina1->inregistreazaCursa(100);
+
+    std::cout << "Masina mai are " << masina1->get_nivelCombusibilCurent() << " litrii de " << masina1->get_combustibil();
+    std::cout << std::endl << "Masina are " << masina1->get_kilometraj() << " km parcursi in total" << std::endl;
     return 0;
 }
