@@ -11,4 +11,6 @@ add_executable(FlotaAuto main.cpp
         Car.cpp
         Car.h
         RoadVehicle.cpp
-        RoadVehicle.h)
+        RoadVehicle.h
+        TimeUtils.cpp
+        TimeUtils.h)

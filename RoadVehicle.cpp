@@ -3,6 +3,8 @@
 //
 
 #include "RoadVehicle.h"
+#include "TimeUtils.h"
+#include <iostream>
 //constructor
 RoadVehicle::RoadVehicle(const std::string& combustibil,
                          const std::string& sasiu,
@@ -24,6 +26,16 @@ RoadVehicle::~RoadVehicle() {
 //metode
 int RoadVehicle::get_kilometraj() const {return kilometraj;}
 std::string RoadVehicle::get_nrInmatriculare() const {return nrInmatriculare;}
+
+bool RoadVehicle::necesitaITP() const {
+    return expires_in_chunk_time(this->dataExpirareITP);
+}
+
+bool RoadVehicle::necesitaRCA() const {
+    return expires_in_chunk_time(this->dataExpirareRCA);
+}
+
+
 
 
 

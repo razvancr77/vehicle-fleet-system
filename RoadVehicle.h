@@ -6,6 +6,7 @@
 #define FLOTAAUTO_ROADVEHICLE_H
 #include "Vehicle.h"
 #include <chrono>
+#define DAYS_BEFORE_EXPIRATION 30
 
 class RoadVehicle : public Vehicle {
     protected:
@@ -30,8 +31,12 @@ class RoadVehicle : public Vehicle {
     //getterii
     std::string get_nrInmatriculare() const;
     int get_kilometraj() const;
-    //metode
+    //metode pur virtuale
     virtual double calculeazaConsum(int kilometri) = 0;
     virtual void inregistreazaCursa(int km) = 0;
+
+    //metode
+    bool necesitaITP() const;
+    bool necesitaRCA() const;
 };
 #endif //FLOTAAUTO_ROADVEHICLE_H
