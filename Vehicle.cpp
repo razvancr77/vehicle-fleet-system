@@ -8,6 +8,7 @@
 Vehicle::Vehicle(const std::string& combustibil, const std::string& sasiu, const std::string& marca, const std::string& model, double cap) : combustibil(combustibil), serieSasiu(sasiu), marca(marca), model(model), capacitateRezervor(cap) {
     this->sofer = nullptr;
     this->nivelCombustibilCurent = 0.0;
+    this->activ = true;
 }
 
 //destructor

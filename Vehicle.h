@@ -19,6 +19,7 @@ protected:
     Driver *sofer;
     double capacitateRezervor;
     double nivelCombustibilCurent;
+    bool activ;
 
 public:
     Vehicle( const std::string& combustibil,
