@@ -28,6 +28,10 @@ double Vehicle::get_nivelCombusibilCurent() const {return this->nivelCombustibil
 
 //metode
 bool Vehicle::asigneazaSofer(Driver *angajat) {
+    if(!this->activ) {
+        std::cout << "Statusul vehicului este inactiv!" << std::endl;
+        return false;
+    }
     if (angajat == nullptr || this->sofer != nullptr) return false;
 
     bool conform = permisValid(*angajat);

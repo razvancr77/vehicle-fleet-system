@@ -34,6 +34,10 @@ Car::~Car() {
 double Car::calculeazaConsum(int km) {return (km * consumMediu) / 100;}
 int Car::calculeazaAutonomie() {return nivelCombustibilCurent/consumMediu * 100;}
 void Car::inregistreazaCursa(int km) {
+    if(!this->activ) {
+        std::cout << "Statusul vehicului este inactiv!" << std::endl;
+        return;
+    }
     if (calculeazaAutonomie() < km) {
         std::cout << "Combustibilul nu ajunge pentru aceasta cursa!" << std::endl;
         return;

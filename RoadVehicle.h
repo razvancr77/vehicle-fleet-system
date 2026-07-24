@@ -9,6 +9,8 @@
 #define DAYS_BEFORE_EXPIRATION 30
 
 class RoadVehicle : public Vehicle {
+    private:
+    bool evalueazaStare();
     protected:
     std::string nrInmatriculare;
     int kilometraj;
@@ -38,5 +40,7 @@ class RoadVehicle : public Vehicle {
     //metode
     bool necesitaITP() const;
     bool necesitaRCA() const;
+    void actualizeazaITP(std::chrono::sys_days newDate);
+    void actualizeazaRCA(std::chrono::sys_days newDate);
 };
 #endif //FLOTAAUTO_ROADVEHICLE_H
