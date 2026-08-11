@@ -14,8 +14,9 @@ RoadVehicle::RoadVehicle(const std::string& combustibil,
                          const std::string& nrInmatriculare,
                          int kilometraj,
                          std::chrono::sys_days dataITP,
-                         std::chrono::sys_days dataRCA)
-: Vehicle(combustibil,sasiu,marca,model,cap), nrInmatriculare(nrInmatriculare), kilometraj(kilometraj), dataExpirareITP(dataITP), dataExpirareRCA(dataRCA){
+                         std::chrono::sys_days dataRCA,
+                         double consum)
+: Vehicle(combustibil,sasiu,marca,model,cap), nrInmatriculare(nrInmatriculare), kilometraj(kilometraj), dataExpirareITP(dataITP), dataExpirareRCA(dataRCA), consumMediu(consum){
     //nimic aici
 }
 
@@ -62,7 +63,19 @@ void RoadVehicle::actualizeazaRCA(std::chrono::sys_days newDate) {
     this->activ = evalueazaStare();
 }
 
-
+void RoadVehicle::inregistreazaCursa(int km) {
+    if(!this->activ) {
+        std::cout << "Statusul vehicului este inactiv!" << std::endl;
+        return;
+    }
+    if (calculeazaAutonomie() < km) {
+        std::cout << "Combustibilul nu ajunge pentru aceasta cursa!" << std::endl;
+        return;
+    }
+    double lirii_consumati = calculeazaConsum(km);
+    consuma(lirii_consumati);
+    this->kilometraj += km;
+}
 
 
 

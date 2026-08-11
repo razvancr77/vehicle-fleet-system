@@ -18,10 +18,10 @@ Car::Car(const std::string& tipcombustibil,
          double cap,
          const std::string& Caroserie,
          int Locuri,
-         double consum,
          std::chrono::sys_days ITP,
-         std::chrono::sys_days RCA)
-: RoadVehicle(tipcombustibil, sas, ma, mo, cap, nr, km, ITP, RCA), tipCaroserie(Caroserie), nrLocuri(Locuri), consumMediu(consum) {
+         std::chrono::sys_days RCA,
+         double consum)
+: RoadVehicle(tipcombustibil, sas, ma, mo, cap, nr, km, ITP, RCA, consum), tipCaroserie(Caroserie), nrLocuri(Locuri) {
     //nimic acum
 }
 
@@ -33,19 +33,6 @@ Car::~Car() {
 //metode si getteri
 double Car::calculeazaConsum(int km) {return (km * consumMediu) / 100;}
 int Car::calculeazaAutonomie() {return nivelCombustibilCurent/consumMediu * 100;}
-void Car::inregistreazaCursa(int km) {
-    if(!this->activ) {
-        std::cout << "Statusul vehicului este inactiv!" << std::endl;
-        return;
-    }
-    if (calculeazaAutonomie() < km) {
-        std::cout << "Combustibilul nu ajunge pentru aceasta cursa!" << std::endl;
-        return;
-    }
-    double lirii_consumati = calculeazaConsum(km);
-    consuma(lirii_consumati);
-    this->kilometraj += km;
-}
 bool Car::permisValid(const Driver &d) {
     std::vector<std::string> p = d.get_permis();
     for (std::string s : p) {

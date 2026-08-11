@@ -26,7 +26,7 @@ public:
              const std::string& sasiu,
              const std::string& marca,
              const std::string& model,
-             double cap);
+             double capRezervor);
     virtual ~Vehicle();
     //getterii
     std::string get_serieSasiu() const;

@@ -5,7 +5,7 @@
 #include "Vehicle.h"
 #include <iostream>
 //constructor
-Vehicle::Vehicle(const std::string& combustibil, const std::string& sasiu, const std::string& marca, const std::string& model, double cap) : combustibil(combustibil), serieSasiu(sasiu), marca(marca), model(model), capacitateRezervor(cap) {
+Vehicle::Vehicle(const std::string& combustibil, const std::string& sasiu, const std::string& marca, const std::string& model, double capRez) : serieSasiu(sasiu), marca(marca), model(model), combustibil(combustibil), capacitateRezervor(capRez) {
     this->sofer = nullptr;
     this->nivelCombustibilCurent = 0.0;
     this->activ = true;
@@ -61,6 +61,7 @@ void Vehicle::alimenteaza(double litrii) {
 void Vehicle::consuma(double litrii) {
     if (litrii < 0 || nivelCombustibilCurent - litrii < 0) {
         std::cout << "Numarul de litrii consumati nu are cum sa fie reali" << std::endl;
+        return;
     }
     this->nivelCombustibilCurent -= litrii;
 }

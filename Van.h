@@ -10,6 +10,7 @@
 class Van : public RoadVehicle {
     private:
     double capacitateMarfaKilograme;
+    double incarcaturaCurenta;
 
     public:
     //constructor
@@ -22,7 +23,8 @@ class Van : public RoadVehicle {
         int kilometraj,
         std::chrono::sys_days dataITP,
         std::chrono::sys_days dataRCA,
-        double capMarfa);
+        double capMarfa,
+        double consum);
     //destructor
     ~Van();
 
@@ -33,8 +35,9 @@ class Van : public RoadVehicle {
     bool permisValid(const Driver &d) override;
     double calculeazaConsum(int kilometri) override;
     int calculeazaAutonomie() override;
-    void inregistreazaCursa(int km) override;
 
-
+    //metode specifice dubei
+    void descarcaMarfa();
+    bool incarcaMarfa(double kg);
 };
 #endif //FLOTAAUTO_VAN_H

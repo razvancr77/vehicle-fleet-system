@@ -12,7 +12,6 @@ class Car : public RoadVehicle {
     private:
     std::string tipCaroserie;
     int nrLocuri;
-    double consumMediu;
 
     public:
     //constructor
@@ -25,15 +24,14 @@ class Car : public RoadVehicle {
         double capRez,
         const std::string& Caroserie,
         int Locuri,
-        double consum,
         std::chrono::sys_days dataITP,
-        std::chrono::sys_days dataRCA);
+        std::chrono::sys_days dataRCA,
+        double consumMediu);
     ~Car();
     //metode
     double calculeazaConsum(int kilometri) override;//cati litrii de combustibil s-au consumat pe distanta
     bool permisValid(const Driver &d) override;
     int calculeazaAutonomie() override;
-    void inregistreazaCursa(int km) override;
 
     //geterii
     std::string get_tipCaroserie() const;
