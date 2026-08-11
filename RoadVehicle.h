@@ -11,6 +11,7 @@
 class RoadVehicle : public Vehicle {
     private:
     bool evalueazaStare();
+
     protected:
     std::string nrInmatriculare;
     int kilometraj;
@@ -38,8 +39,8 @@ class RoadVehicle : public Vehicle {
     virtual void inregistreazaCursa(int km) = 0;
 
     //metode
-    bool necesitaITP() const;
-    bool necesitaRCA() const;
+    int zileITP() const;
+    int zileRCA() const;
     void actualizeazaITP(std::chrono::sys_days newDate);
     void actualizeazaRCA(std::chrono::sys_days newDate);
 };

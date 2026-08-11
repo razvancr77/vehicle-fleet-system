@@ -34,12 +34,12 @@ bool RoadVehicle::evalueazaStare() {
     return true;
 }
 
-bool RoadVehicle::necesitaITP() const {
-    return expires_in_chunk_time(this->dataExpirareITP);
+int RoadVehicle::zileITP() const {
+    return days_until_expiration(this->dataExpirareITP);
 }
 
-bool RoadVehicle::necesitaRCA() const {
-    return expires_in_chunk_time(this->dataExpirareRCA);
+int RoadVehicle::zileRCA() const {
+    return days_until_expiration(this->dataExpirareRCA);
 }
 
 void RoadVehicle::actualizeazaITP(std::chrono::sys_days newDate) {

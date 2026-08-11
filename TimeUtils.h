@@ -10,6 +10,6 @@
 
 std::chrono::sys_days current_day() ;
 bool expired(std::chrono::sys_days random_date) ;
-bool expires_in_chunk_time(std::chrono::sys_days date) ;//chunk time is DAYS_BEFORE_EXPIRATION  defined in RoadVehicle.h
+int days_until_expiration(std::chrono::sys_days date) ;//DAYS_BEFORE_EXPIRATION  defined in RoadVehicle.h
 
 #endif //FLOTAAUTO_TIMEUTILS_H

@@ -24,6 +24,8 @@ std::string Vehicle::get_combustibil() const {return this->combustibil;}
 Driver *Vehicle::get_sofer() const {return this->sofer;}
 double Vehicle::get_capacitateRezervor() const {return this->capacitateRezervor;}
 double Vehicle::get_nivelCombusibilCurent() const {return this->nivelCombustibilCurent;}
+bool Vehicle::isActiv() const {return this->activ;}
+
 
 
 //metode

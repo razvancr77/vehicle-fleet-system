@@ -36,6 +36,7 @@ public:
     Driver *get_sofer() const;
     double get_capacitateRezervor() const;
     double get_nivelCombusibilCurent() const;
+    bool isActiv() const;
 
     virtual bool permisValid(const Driver& d) = 0;
     virtual int calculeazaAutonomie() = 0;
