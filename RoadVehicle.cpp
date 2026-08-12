@@ -15,8 +15,9 @@ RoadVehicle::RoadVehicle(const std::string& combustibil,
                          int kilometraj,
                          std::chrono::sys_days dataITP,
                          std::chrono::sys_days dataRCA,
-                         double consum)
-: Vehicle(combustibil,sasiu,marca,model,cap), nrInmatriculare(nrInmatriculare), kilometraj(kilometraj), dataExpirareITP(dataITP), dataExpirareRCA(dataRCA), consumMediu(consum){
+                         double consum,
+                         int ultimaRevizie)
+: Vehicle(combustibil,sasiu,marca,model,cap), nrInmatriculare(nrInmatriculare), kilometraj(kilometraj), dataExpirareITP(dataITP), dataExpirareRCA(dataRCA), consumMediu(consum), km_ultima_revizie(ultimaRevizie){
     //nimic aici
 }
 
@@ -24,10 +25,15 @@ RoadVehicle::~RoadVehicle() {
     //nimic
 }
 
-//metode
+//getterii
 int RoadVehicle::get_kilometraj() const {return kilometraj;}
 std::string RoadVehicle::get_nrInmatriculare() const {return nrInmatriculare;}
+std::chrono::sys_days RoadVehicle::get_dataExpirareITP() const {return this->dataExpirareITP;}
+std::chrono::sys_days RoadVehicle::get_dataExpirareRCA() const {return this->dataExpirareRCA;}
 
+
+
+//metode
 bool RoadVehicle::evalueazaStare() {
     if (expired(this->dataExpirareITP)) return false;
     if (expired(this->dataExpirareRCA)) return false;
@@ -76,6 +82,12 @@ void RoadVehicle::inregistreazaCursa(int km) {
     consuma(lirii_consumati);
     this->kilometraj += km;
 }
+
+void RoadVehicle::efectueazaRevizie() {this->km_ultima_revizie = this->kilometraj;}
+
+int RoadVehicle::km_pana_la_revizie() {return this->limitaRevizie() - (this->kilometraj - this->km_ultima_revizie);}
+
+
 
 
 

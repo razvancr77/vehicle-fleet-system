@@ -24,7 +24,8 @@ class Van : public RoadVehicle {
         std::chrono::sys_days dataITP,
         std::chrono::sys_days dataRCA,
         double capMarfa,
-        double consum);
+        double consum,
+        int km_ultima_revizie);
     //destructor
     ~Van();
 
@@ -35,6 +36,7 @@ class Van : public RoadVehicle {
     bool permisValid(const Driver &d) override;
     double calculeazaConsum(int kilometri) override;
     int calculeazaAutonomie() override;
+    int limitaRevizie() override;
 
     //metode specifice dubei
     void descarcaMarfa();

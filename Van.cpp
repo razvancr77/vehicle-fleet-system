@@ -17,8 +17,9 @@ Van::Van(const std::string& combustibil,
         std::chrono::sys_days dataITP,
         std::chrono::sys_days dataRCA,
         double capMarfa,
-        double consum)
-            : RoadVehicle(combustibil, sasiu, marca, model, capRez, nrInmatriculare, kilometraj, dataITP, dataRCA, consum), capacitateMarfaKilograme(capMarfa) {
+        double consum,
+        int revizie)
+            : RoadVehicle(combustibil, sasiu, marca, model, capRez, nrInmatriculare, kilometraj, dataITP, dataRCA, consum, revizie), capacitateMarfaKilograme(capMarfa) {
     this->incarcaturaCurenta = 0.0;
 }
 
@@ -30,6 +31,7 @@ Van::~Van() {
 //getter
 double Van::get_capacitateMarfa() const {return this->capacitateMarfaKilograme;}
 
+//metode
 void Van::descarcaMarfa() {this->incarcaturaCurenta = 0.0;}
 
 bool Van::incarcaMarfa(double kg) {
@@ -62,3 +64,5 @@ int Van::calculeazaAutonomie() {
     double consumReal = consumMediu + (incarcaturaCurenta / 100.0) * 0.5;
     return this->nivelCombustibilCurent / consumReal * 100;
 }
+
+int Van::limitaRevizie() {return 10000;}

@@ -26,12 +26,14 @@ class Car : public RoadVehicle {
         int Locuri,
         std::chrono::sys_days dataITP,
         std::chrono::sys_days dataRCA,
-        double consumMediu);
+        double consumMediu,
+        int km_ultima_revizie);
     ~Car();
-    //metode
+    //metode virtuale
     double calculeazaConsum(int kilometri) override;//cati litrii de combustibil s-au consumat pe distanta
     bool permisValid(const Driver &d) override;
     int calculeazaAutonomie() override;
+    int limitaRevizie() override;
 
     //geterii
     std::string get_tipCaroserie() const;

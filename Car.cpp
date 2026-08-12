@@ -20,8 +20,9 @@ Car::Car(const std::string& tipcombustibil,
          int Locuri,
          std::chrono::sys_days ITP,
          std::chrono::sys_days RCA,
-         double consum)
-: RoadVehicle(tipcombustibil, sas, ma, mo, cap, nr, km, ITP, RCA, consum), tipCaroserie(Caroserie), nrLocuri(Locuri) {
+         double consum,
+         int revizie)
+: RoadVehicle(tipcombustibil, sas, ma, mo, cap, nr, km, ITP, RCA, consum, revizie), tipCaroserie(Caroserie), nrLocuri(Locuri) {
     //nimic acum
 }
 
@@ -32,7 +33,9 @@ Car::~Car() {
 
 //metode si getteri
 double Car::calculeazaConsum(int km) {return (km * consumMediu) / 100;}
+
 int Car::calculeazaAutonomie() {return nivelCombustibilCurent/consumMediu * 100;}
+
 bool Car::permisValid(const Driver &d) {
     std::vector<std::string> p = d.get_permis();
     for (std::string s : p) {
@@ -43,5 +46,10 @@ bool Car::permisValid(const Driver &d) {
 }
 
 std::string Car::get_tipCaroserie() const {return tipCaroserie;}
+
 int Car::get_nrLocuri() const {return nrLocuri;}
+
 double Car::get_consumMediu() const {return consumMediu;}
+
+int Car::limitaRevizie() {return 15000;}
+
