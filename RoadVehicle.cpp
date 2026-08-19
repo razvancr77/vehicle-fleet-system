@@ -4,6 +4,8 @@
 
 #include "RoadVehicle.h"
 #include "TimeUtils.h"
+#include "Exceptions.h"
+#include <stdexcept>
 #include <iostream>
 //constructor
 RoadVehicle::RoadVehicle(const std::string& combustibil,
@@ -34,7 +36,7 @@ std::chrono::sys_days RoadVehicle::get_dataExpirareRCA() const {return this->dat
 
 
 //metode
-bool RoadVehicle::evalueazaStare() {
+bool RoadVehicle::acteValabile() const { //e privata
     if (expired(this->dataExpirareITP)) return false;
     if (expired(this->dataExpirareRCA)) return false;
     //alte verificari
@@ -52,32 +54,36 @@ int RoadVehicle::zileRCA() const {
 void RoadVehicle::actualizeazaITP(std::chrono::sys_days newDate) {
     std::chrono::sys_days azi = current_day();
     if (newDate < azi) {
-        std::cout << "Noua data de expirare e din trecut!" << std::endl;
-        return;
+        throw std::invalid_argument("Noua data de expirare nu poate fi din trecut!");
     }
     this->dataExpirareITP = newDate;
-    this->activ = evalueazaStare();
+    this->activ = acteValabile();
 }
 
 void RoadVehicle::actualizeazaRCA(std::chrono::sys_days newDate) {
     std::chrono::sys_days azi = current_day();
     if (newDate < azi) {
-        std::cout << "Noua data de expirare e din trecut!" << std::endl;
-        return;
+        throw std::invalid_argument("Noua data de expirare nu poate fi din trecut!");
     }
     this->dataExpirareRCA = newDate;
-    this->activ = evalueazaStare();
+    this->activ = acteValabile();
 }
 
 void RoadVehicle::inregistreazaCursa(int km) {
+    this->activ = acteValabile();
+
     if(!this->activ) {
-        std::cout << "Statusul vehicului este inactiv!" << std::endl;
-        return;
+        throw InactiveVehicleException("Statusul vehicului este inactiv!");
     }
+
+    if (km <= 0) {
+        throw std::invalid_argument("Kilometrii parcursi trebuie sa fie > 0.");
+    }
+
     if (calculeazaAutonomie() < km) {
-        std::cout << "Combustibilul nu ajunge pentru aceasta cursa!" << std::endl;
-        return;
+        throw FuelCapacityException("Combustibilul nu ajunge pentru aceasta cursa!");
     }
+
     double lirii_consumati = calculeazaConsum(km);
     consuma(lirii_consumati);
     this->kilometraj += km;

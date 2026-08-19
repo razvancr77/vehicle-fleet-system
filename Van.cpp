@@ -4,7 +4,9 @@
 
 #include "Van.h"
 #include "Driver.h"
+#include "Exceptions.h"
 #include <vector>
+#include <stdexcept>
 
 //constructor
 Van::Van(const std::string& combustibil,
@@ -34,12 +36,17 @@ double Van::get_capacitateMarfa() const {return this->capacitateMarfaKilograme;}
 //metode
 void Van::descarcaMarfa() {this->incarcaturaCurenta = 0.0;}
 
-bool Van::incarcaMarfa(double kg) {
+void Van::incarcaMarfa(double kg) {
+    if (kg <= 0) {
+        throw std::invalid_argument("Trebuie incarcata marfa cu valoare pozitiva.");
+    }
+
     double greutateTotala = this->incarcaturaCurenta + kg;
-    if (greutateTotala > this->capacitateMarfaKilograme)
-        return false;
+    if (greutateTotala > this->capacitateMarfaKilograme) {
+        throw VanWeightException("Nu se poate incarca cu o greutate asa de mare.");
+    }
+
     this->incarcaturaCurenta = greutateTotala;
-    return true;
 }
 
 

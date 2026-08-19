@@ -38,11 +38,12 @@ public:
     double get_nivelCombusibilCurent() const;
     bool isActiv() const;
 
+    //metode pur virtuale
     virtual bool permisValid(const Driver& d) = 0;
     virtual int calculeazaAutonomie() = 0;
 
     //metode mostenite direct
-    bool asigneazaSofer(Driver *angajat);
+    void asigneazaSofer(Driver *angajat);
     void elibereazaSofer();
     void alimenteaza(double litrii);
     void consuma(double litrii);

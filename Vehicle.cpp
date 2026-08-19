@@ -3,6 +3,7 @@
 //
 
 #include "Vehicle.h"
+#include "Exceptions.h"
 #include <iostream>
 //constructor
 Vehicle::Vehicle(const std::string& combustibil, const std::string& sasiu, const std::string& marca, const std::string& model, double capRez) : serieSasiu(sasiu), marca(marca), model(model), combustibil(combustibil), capacitateRezervor(capRez) {
@@ -29,20 +30,24 @@ bool Vehicle::isActiv() const {return this->activ;}
 
 
 //metode
-bool Vehicle::asigneazaSofer(Driver *angajat) {
+void Vehicle::asigneazaSofer(Driver *angajat) {
     if(!this->activ) {
-        std::cout << "Statusul vehicului este inactiv!" << std::endl;
-        return false;
+        throw InactiveVehicleException("Statusul vehicului este inactiv!");
     }
-    if (angajat == nullptr || this->sofer != nullptr) return false;
 
-    bool conform = permisValid(*angajat);
-    if (conform) {
-        this->sofer = angajat;
-        return true;
+    if (angajat == nullptr ) {
+        throw std::invalid_argument("Pointerul catre sofer este null!");
     }
-    std::cout << "Acest angajat nu are categoria de permis necesara conducerii acestui vehicul." << std::endl;
-    return false;
+
+    if (this->sofer != nullptr) {
+        throw VehicleOccupiedException("Vehiculul are deja asignat un sofer! Daca vreti sa contunuati trebuie sa eliberati mai intai vechiul sofer.");
+    }
+
+    if (!permisValid(*angajat)) {
+        throw DriverLicenseException("Acest angajat nu are categoria de permis necesara conducerii acestui vehicul.");
+    }
+
+    this->sofer = angajat;
 }
 
 void Vehicle::elibereazaSofer() {
@@ -51,17 +56,23 @@ void Vehicle::elibereazaSofer() {
 
 
 void Vehicle::alimenteaza(double litrii) {
-    if (litrii < 0 || litrii + nivelCombustibilCurent > this->capacitateRezervor) {
-        std::cout << "Numarul de litrii nu e adecvat pentru alimentare." << std::endl;
-        return;
+    if (litrii <= 0 ) {
+        throw std::invalid_argument("Cantitatea trebuie sa fie pozitiva!");
+    }
+    if(litrii + nivelCombustibilCurent > this->capacitateRezervor) {
+        throw FuelCapacityException("Se depaseste capacitatea rezervorului!");
     }
     this->nivelCombustibilCurent += litrii;
 }
 
 void Vehicle::consuma(double litrii) {
-    if (litrii < 0 || nivelCombustibilCurent - litrii < 0) {
-        std::cout << "Numarul de litrii consumati nu are cum sa fie reali" << std::endl;
-        return;
+    if (litrii <= 0) {
+        throw std::invalid_argument("Cantitatea trebuie sa fie pozitiva!");
+    }
+
+
+    if (nivelCombustibilCurent - litrii < 0) {
+        throw FuelCapacityException("Nu se pot consuma atat de multi litrii de combustibil(se goleste rezervorul)");
     }
     this->nivelCombustibilCurent -= litrii;
 }

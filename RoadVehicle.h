@@ -10,7 +10,7 @@
 
 class RoadVehicle : public Vehicle {
     private:
-    bool evalueazaStare();
+    bool acteValabile() const;
 
     protected:
     std::string nrInmatriculare;

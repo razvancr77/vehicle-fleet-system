@@ -40,6 +40,6 @@ class Van : public RoadVehicle {
 
     //metode specifice dubei
     void descarcaMarfa();
-    bool incarcaMarfa(double kg);
+    void incarcaMarfa(double kg);
 };
 #endif //FLOTAAUTO_VAN_H
