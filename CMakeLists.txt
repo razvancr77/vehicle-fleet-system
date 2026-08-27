@@ -16,4 +16,6 @@ add_executable(FlotaAuto main.cpp
         TimeUtils.h
         Van.cpp
         Van.h
-        Exceptions.h)
+        Exceptions.h
+        FleetManager.cpp
+        FleetManager.h)
